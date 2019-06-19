@@ -322,7 +322,7 @@ static enum ResolveResult monitor_resolve(struct MonitorInfo *info, struct Mailb
     info->magic = m->magic;
     info->path = m->realpath;
   }
-  else if (Context)
+  else if (Context && Context->mailbox)
   {
     info->magic = Context->mailbox->magic;
     info->path = Context->mailbox->realpath;
@@ -528,7 +528,7 @@ int mutt_monitor_remove(struct Mailbox *m)
     goto cleanup;
   }
 
-  if (Context)
+  if (Context && Context->mailbox)
   {
     if (m)
     {
